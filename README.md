@@ -33,7 +33,7 @@ Developing an API
 		- Heroku - Free	
 
 
-## API:
+## API URL Endpoints:
 	POSTS:
 		- GET= /posts/  	    : Get Posts
 		- POST= /posts/		    : Create Posts
