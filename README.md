@@ -1,15 +1,15 @@
-## UserPostsAPI
+# UserPostsAPI
 
 Developing an API
 
 
-# API includes:
+## API includes:
 - Authentication
 - CRUD Operations
 - Validation
 - Documentation
 
-# Tech Stack:
+## Tech Stack:
 
 	Language: Python
 
@@ -33,7 +33,7 @@ Developing an API
 		- Heroku - Free	
 
 
-# API:
+## API:
 	POSTS:
 		- GET= /posts/  	    : Get Posts
 		- POST= /posts/		    : Create Posts
