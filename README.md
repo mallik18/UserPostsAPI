@@ -1,15 +1,16 @@
-# UserPostsAPI
+## UserPostsAPI
 
 Developing an API
 
 
-API includes:
-	- Authentication
-	- CRUD Operations
-	- Validation
-	- Documentation
+# API includes:
+- Authentication
+- CRUD Operations
+- Validation
+- Documentation
 
-Tech Stack:
+# Tech Stack:
+
 	Language: Python
 
 	Framework: FastAPI	
@@ -32,7 +33,7 @@ Tech Stack:
 		- Heroku - Free	
 
 
-API:
+# API:
 	POSTS:
 		- GET= /posts/  	    : Get Posts
 		- POST= /posts/		    : Create Posts
