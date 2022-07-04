@@ -18,7 +18,7 @@ Developing an API
 	Database:
 		SQL - PostgreSQL
 		ORM(Object Relation Mapping) - SQLAlchemy
-		Database Migration tools - Alembic
+		Database Migration tools     - Alembic
 	
 	API Testing:
 		POSTMAN

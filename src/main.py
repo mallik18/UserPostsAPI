@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from schemas import Posts
+from src.schemas import Posts
 
 app = FastAPI()
 
@@ -12,8 +12,7 @@ async def root():
 async def get_posts():
     return {"data": "This is your post"}
 
-@app.post("/createposts")
+@app.post("/posts")
 async def create_posts(new_post: Posts):
     print(new_post)
-    return {"new_post": f"title:{new_post.title}, content:{new_post.content}"}
-    
+    return {"new_post": new_post.dict()}
