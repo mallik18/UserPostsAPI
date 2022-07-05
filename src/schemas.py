@@ -1,5 +1,3 @@
-from lib2to3.pytree import Base
-from typing import Optional
 from pydantic import BaseModel
 from datetime import datetime
 from typing import Optional
