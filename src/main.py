@@ -1,14 +1,19 @@
 """ Modules """
 import logging
 import os
-from fastapi import FastAPI, status, HTTPException
+from fastapi import FastAPI, status, HTTPException, Depends
 import psycopg2
 from psycopg2.extras import RealDictCursor
+from sqlalchemy.orm import Session
 
 from dotenv import load_dotenv
 from src.schemas import Posts
+from . import models
+from .database import engine, get_db
 
 load_dotenv()
+
+models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
@@ -34,6 +39,10 @@ async def root():
     """ Main entry point"""
     return {"message": "Hello World"}
 
+@app.get("/sqlalchemy")
+def test_sqlalchemy(db_posts: Session= Depends(get_db)):
+    """ Test a database with a SQLAlchemy model """
+    return {"message": "success"}
 
 @app.get("/posts")
 def get_posts():
