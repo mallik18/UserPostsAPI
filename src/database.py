@@ -17,8 +17,6 @@ DBNAME=os.getenv('DBNAME')
 #                           hostname>/<database_name>"
 SQLALCHEMY_DATABASE_URL = f"postgresql://{POSTGRES_USER}:{PASSWORD}@{HOST}/{DBNAME}"
 
-print(SQLALCHEMY_DATABASE_URL)
-
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
