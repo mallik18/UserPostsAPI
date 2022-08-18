@@ -18,13 +18,13 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI()
 
 logging.basicConfig(filename='src/logs/database.log',
-                        level=logging.DEBUG)
+                        level=logging.INFO)
 while True:
-
     try:
         conn = psycopg2.connect(host=os.getenv('HOST'), dbname=os.getenv('DBNAME'),
-                                user=os.getenv('USER'), password=os.getenv('PASSWORD'),
+                                user=os.getenv('POSTGRES_USER'), password=os.getenv('PASSWORD'),
                                 cursor_factory=RealDictCursor)
+
         cursor = conn.cursor()
         print("Database connection was successfull!")
         logging.info("Database connection was successfull!")

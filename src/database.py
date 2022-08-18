@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker
 
 load_dotenv()
 
-USER=os.getenv('USER')
+POSTGRES_USER=os.getenv('POSTGRES_USER')
 PASSWORD=os.getenv('PASSWORD')
 HOST=os.getenv('HOST')
 DBNAME=os.getenv('DBNAME')
@@ -15,7 +15,9 @@ DBNAME=os.getenv('DBNAME')
 
 #SQLALCHEMY_DATABASE_URL = "postgresql://<username>:<password>@<ip-address/
 #                           hostname>/<database_name>"
-SQLALCHEMY_DATABASE_URL = f"postgresql://{USER}:{PASSWORD}@{HOST}/{DBNAME}"
+SQLALCHEMY_DATABASE_URL = f"postgresql://{POSTGRES_USER}:{PASSWORD}@{HOST}/{DBNAME}"
+
+print(SQLALCHEMY_DATABASE_URL)
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL)
 
