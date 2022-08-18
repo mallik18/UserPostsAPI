@@ -42,27 +42,36 @@ async def root():
 @app.get("/sqlalchemy")
 def test_sqlalchemy(db_posts: Session= Depends(get_db)):
     """ Test a database with a SQLAlchemy model """
-    return {"message": "success"}
+    # below statement gets converted with no all() to raw sql query
+    posts = db_posts.query(models.Post).all()
+    return {"data": posts}
 
 @app.get("/posts")
-def get_posts():
+def get_posts(db_posts: Session= Depends(get_db)):
     """ Get all posts from database"""
-    cursor.execute(""" SELECT * FROM posts """)
-    posts = cursor.fetchall()
-    print(posts)
+    # cursor.execute(""" SELECT * FROM posts """)
+    # posts = cursor.fetchall()
+    posts = db_posts.query(models.Post).all()
     return {"data": posts}
 
 
 @app.post("/posts", status_code=status.HTTP_201_CREATED)
-def create_posts(new_post: Posts):
+def create_posts(new_post: Posts, db_posts: Session= Depends(get_db)):
     """Create a new post and insert it into the database"""
     # returning * = Feature of Postgres database to return the query result
 
-    cursor.execute(""" INSERT INTO posts(title, content, published)
-                       VALUES (%s, %s, %s) RETURNING * """,
-                        (new_post.title, new_post.content, new_post.published))
-    ret_post = cursor.fetchone()
-    conn.commit()
+    # cursor.execute(""" INSERT INTO posts(title, content, published)
+    #                    VALUES (%s, %s, %s) RETURNING * """,
+    #                     (new_post.title, new_post.content, new_post.published))
+    # ret_post = cursor.fetchone()
+    # conn.commit()
+
+    #ret_post = models.Post(title=new_post.title, content=new_post.content, published=new_post.published)
+    
+    ret_post = models.Post(**new_post.dict())
+    db_posts.add(ret_post)
+    db_posts.commit()
+    db_posts.refresh(ret_post)
     return {"Inserted post detail": ret_post}
 
 
