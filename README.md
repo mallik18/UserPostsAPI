@@ -1,4 +1,5 @@
-[https://github.com/mallik18/UserPostsAPI/interrogate_badge.svg?branch=main]
+![Alt text](./interrogate_badge.svg)
+<img src="./interrogate_badge.svg">
 
 # UserPostsAPI
 
