@@ -1,4 +1,4 @@
-[![Python application](https://github.com/mallik18/UserPostsAPI/interrogate_badge.svg]
+[![Python application](https://github.com/mallik18/UserPostsAPI/interrogate_badge.svg?branch=main)]
 
 # UserPostsAPI
 
