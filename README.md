@@ -1,4 +1,4 @@
-(https://github.com/mallik18/UserPostsAPI/interrogate_badge.svg?branch=main)
+[https://github.com/mallik18/UserPostsAPI/interrogate_badge.svg?branch=main]
 
 # UserPostsAPI
 
@@ -41,7 +41,7 @@ Developing an API
 		- POST= /posts/		    : Create Posts
 		- GET= /posts/{id}	    : Get Post
 		- PUT= /posts/{id}	    : Update Post
-		- DELETE= /posts/{id}	: Delete Post
+		- DELETE= /posts/{id}	    : Delete Post
 
 	Users:
 		- POST= /users/		    : Create User
@@ -54,7 +54,7 @@ Developing an API
 		- POST= /vote/		    : Vote on post
 
 	Default:
-		- GET= /			    : main page
+		- GET= /		    : main page
 
 	Docs:
 		- /redoc or /docs	    : Documentation
