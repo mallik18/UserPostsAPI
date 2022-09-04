@@ -1,4 +1,3 @@
-![Alt text](./interrogate_badge.svg)
 <img src="./interrogate_badge.svg">
 
 # UserPostsAPI
