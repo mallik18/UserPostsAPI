@@ -1,7 +1,7 @@
 """ Modules"""
 from datetime import datetime
 
-from pydantic import BaseModel
+from pydantic import BaseModel, EmailStr
 
 
 class Posts(BaseModel):
@@ -26,5 +26,25 @@ class PostsResponse(BaseModel):
         read the data even if it is not a dict, but an ORM model
         or any other arbitrary object with attributes
         """
+
+        orm_mode = True
+
+
+class UserCreate(BaseModel):
+    """Scheme for creating a user."""
+
+    email: EmailStr
+    password: str
+
+
+class UserResponse(BaseModel):
+    """Scheme for the response of a user"""
+
+    id: int
+    email: EmailStr
+    created_at: datetime
+
+    class Config:
+        """Pydantic orm reads from ORM Model"""
 
         orm_mode = True

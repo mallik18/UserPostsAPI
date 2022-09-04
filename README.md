@@ -1,3 +1,5 @@
+[![Python application](https://github.com/mallik18/UserPostsAPI/interrogate_badge.svg?branch=main)]
+
 # UserPostsAPI
 
 Developing an API
