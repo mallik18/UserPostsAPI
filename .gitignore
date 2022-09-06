@@ -4,3 +4,4 @@ src/__pycache__/
 src/logs/
 src/.env
 src/.main_with_rawsql.py
+src/routers/__pycache__/
