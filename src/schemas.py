@@ -48,3 +48,10 @@ class UserResponse(BaseModel):
         """Pydantic orm reads from ORM Model"""
 
         orm_mode = True
+
+
+class UserLogin(BaseModel):
+    """Scheme for user login"""
+
+    email: EmailStr
+    password: str
