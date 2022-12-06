@@ -42,6 +42,21 @@ def create_posts(new_post: schemas.Posts, db_posts: Session = Depends(get_db)):
     return ret_post
 
 
+@router.get("/totalpostscount")
+def get_total_posts_count(db_posts: Session = Depends(get_db)):
+    """ "Get total posts count from database"""
+
+    ret_post = db_posts.query(models.Post).count()
+
+    if ret_post is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Total number of posts are zero",
+        )
+
+    return ret_post
+
+
 @router.get("/{post_id}", response_model=schemas.PostsResponse)
 def get_posts_by_id(post_id: int, db_posts: Session = Depends(get_db)):
     """ "Get posts by post_id from database"""

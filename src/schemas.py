@@ -1,5 +1,6 @@
 """ Modules"""
 from datetime import datetime
+from typing import Optional
 
 from pydantic import BaseModel, EmailStr
 
@@ -55,3 +56,16 @@ class UserLogin(BaseModel):
 
     email: EmailStr
     password: str
+
+
+class JWTToken(BaseModel):
+    """Scheme for JWT token"""
+
+    access_token: str
+    token_type: str
+
+
+class JWTTokenData(BaseModel):
+    """Scheme for JWT token data"""
+
+    id: Optional[str] = None
