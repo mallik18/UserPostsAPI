@@ -46,11 +46,11 @@ class GenerateJWTToken:
         """Verify access token"""
         try:
             payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-            user_id: str = payload.get("users_id")
+            user_id: str = payload.get("user_id")
 
             if user_id is None:
                 raise credentials_exception
-            token_data = schemas.JWTTokenData(id=id)
+            token_data = schemas.JWTTokenData(id=user_id)
 
         except JWTError as err:
             raise credentials_exception from err

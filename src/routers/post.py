@@ -5,7 +5,7 @@ from typing import List
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from .. import models, schemas
+from .. import models, oauth2, schemas
 from ..database import get_db
 
 # API Router for Posts API endpoints.
@@ -13,7 +13,10 @@ router = APIRouter(prefix="/posts", tags=["Posts"])
 
 
 @router.get("/", response_model=List[schemas.PostsResponse])
-def get_posts(db_posts: Session = Depends(get_db)):
+def get_posts(
+    db_posts: Session = Depends(get_db),
+    user_id: int = Depends(oauth2.GenerateJWTToken().get_current_user),
+):
     """Get all posts from database"""
 
     posts = db_posts.query(models.Post).all()
@@ -31,7 +34,11 @@ def get_posts(db_posts: Session = Depends(get_db)):
     status_code=status.HTTP_201_CREATED,
     response_model=schemas.PostsResponse,
 )
-def create_posts(new_post: schemas.Posts, db_posts: Session = Depends(get_db)):
+def create_posts(
+    new_post: schemas.Posts,
+    db_posts: Session = Depends(get_db),
+    user_id: int = Depends(oauth2.GenerateJWTToken().get_current_user),
+):
     """Create a new post and insert it into the database"""
 
     ret_post = models.Post(**new_post.dict())
@@ -58,7 +65,11 @@ def get_total_posts_count(db_posts: Session = Depends(get_db)):
 
 
 @router.get("/{post_id}", response_model=schemas.PostsResponse)
-def get_posts_by_id(post_id: int, db_posts: Session = Depends(get_db)):
+def get_posts_by_id(
+    post_id: int,
+    db_posts: Session = Depends(get_db),
+    user_id: int = Depends(oauth2.GenerateJWTToken().get_current_user),
+):
     """ "Get posts by post_id from database"""
 
     ret_post = (
@@ -75,7 +86,11 @@ def get_posts_by_id(post_id: int, db_posts: Session = Depends(get_db)):
 
 
 @router.delete("/{post_id}")
-def delete_posts(post_id: int, db_posts: Session = Depends(get_db)):
+def delete_posts(
+    post_id: int,
+    db_posts: Session = Depends(get_db),
+    user_id: int = Depends(oauth2.GenerateJWTToken().get_current_user),
+):
     """Delete a post from the database"""
 
     ret_post = db_posts.query(models.Post).filter(models.Post.id == post_id)
@@ -97,6 +112,7 @@ def update_post(
     post_id: int,
     updated_post: schemas.Posts,
     db_posts: Session = Depends(get_db),
+    user_id: int = Depends(oauth2.GenerateJWTToken().get_current_user),
 ):
     """Update a post"""
 

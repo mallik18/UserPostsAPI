@@ -3,14 +3,14 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from fastapi.security.oauth2 import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
 
-from .. import database, models
+from .. import database, models, schemas
 from ..oauth2 import GenerateJWTToken
 from ..password_handler import PasswordHandler
 
 router = APIRouter(tags=["Authentication"])
 
 
-@router.post("/login")
+@router.post("/login", response_model=schemas.JWTToken)
 def login(
     user_credentials: OAuth2PasswordRequestForm = Depends(),
     db_sess: Session = Depends(database.get_db),
